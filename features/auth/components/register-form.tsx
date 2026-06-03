@@ -1,42 +1,42 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
+'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
+import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "@/components/ui/field";
-import { authClient } from "@/lib/auth-client";
+} from '@/components/ui/field';
+import { authClient } from '@/lib/auth-client';
 // import authclient from "@/lib/authclient";
 
 const registerSchema = z
   .object({
-    email: z.email("Invalid email address"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
+    email: z.email('Invalid email address'),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
     confirmPassword: z
       .string()
-      .min(6, "Confirm Password must be at least 6 characters"),
+      .min(6, 'Confirm Password must be at least 6 characters'),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
   });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
@@ -46,9 +46,9 @@ export function RegisterForm() {
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema as any),
     defaultValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
   });
 
@@ -58,20 +58,20 @@ export function RegisterForm() {
         name: values.email,
         email: values.email,
         password: values.password,
-        callbackURL: "/",
+        callbackURL: '/',
       },
       {
         onSuccess: () => {
-          router.push("/");
+          router.push('/');
         },
         onError: (ctx) => {
           toast.error(
-            ctx.error.message || "An error occurred during registration.",
+            ctx.error.message || 'An error occurred during registration.',
           );
         },
       },
     );
-    toast.success("Account created successfully! Please log in.");
+    toast.success('Account created successfully! Please log in.');
   };
   const isPending = form.formState.isSubmitting;
 
@@ -93,6 +93,12 @@ export function RegisterForm() {
                   type='button'
                   disabled={isPending}
                 >
+                  <Image
+                    alt='github'
+                    src='/logos/github.svg'
+                    width={20}
+                    height={20}
+                  />
                   Continue with Github
                 </Button>
                 <Button
@@ -101,6 +107,12 @@ export function RegisterForm() {
                   type='button'
                   disabled={isPending}
                 >
+                  <Image
+                    alt='Google'
+                    src='/logos/google.svg'
+                    width={20}
+                    height={20}
+                  />
                   Continue with Google
                 </Button>
               </div>
@@ -165,13 +177,13 @@ export function RegisterForm() {
                 <Button
                   type='submit'
                   disabled={isPending}
-                  className={cn("w-full")}
+                  className={cn('w-full')}
                 >
                   Create Account
                 </Button>
               </div>
               <div className='text-center text-sm'>
-                Already have an account?{" "}
+                Already have an account?{' '}
                 <Link href='/login' className='underline underline-offset-4'>
                   Log in
                 </Link>
