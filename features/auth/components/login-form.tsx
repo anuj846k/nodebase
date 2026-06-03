@@ -1,34 +1,34 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
+'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
+import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "@/components/ui/field";
-import { authClient } from "@/lib/auth-client";
+} from '@/components/ui/field';
+import { authClient } from '@/lib/auth-client';
 // import authclient from "@/lib/authclient";
 
 const loginSchema = z.object({
-  email: z.email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  email: z.email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -38,8 +38,8 @@ export function LoginForm() {
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema as any),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -48,16 +48,16 @@ export function LoginForm() {
       {
         email: values.email,
         password: values.password,
-        callbackURL: "/",
+        callbackURL: '/',
       },
       {
         onSuccess: () => {
-          router.push("/");
-          toast.success("Logged in successfully!");
+          router.push('/');
+          toast.success('Logged in successfully!');
         },
         onError: (ctx) => {
           toast.error(
-            ctx.error.message || "An error occurred during registration.",
+            ctx.error.message || 'An error occurred during registration.',
           );
         },
       },
@@ -83,6 +83,12 @@ export function LoginForm() {
                   type='button'
                   disabled={isPending}
                 >
+                  <Image
+                    alt='github'
+                    src='/logos/github.svg'
+                    width={20}
+                    height={20}
+                  />
                   Continue with Github
                 </Button>
                 <Button
@@ -91,6 +97,12 @@ export function LoginForm() {
                   type='button'
                   disabled={isPending}
                 >
+                  <Image
+                    alt='Google'
+                    src='/logos/google.svg'
+                    width={20}
+                    height={20}
+                  />
                   Continue with Google
                 </Button>
               </div>
@@ -136,13 +148,13 @@ export function LoginForm() {
                 <Button
                   type='submit'
                   disabled={isPending}
-                  className={cn("w-full")}
+                  className={cn('w-full')}
                 >
                   Login
                 </Button>
               </div>
               <div className='text-center text-sm'>
-                Don&apos;t have an account?{" "}
+                Don&apos;t have an account?{' '}
                 <Link href='/signup' className='underline underline-offset-4'>
                   Sign up
                 </Link>
