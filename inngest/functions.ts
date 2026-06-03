@@ -11,6 +11,12 @@ export const executeAi = inngest.createFunction(
       model: google('gemini-2.5-flash'),
       system: 'You are a helpful assistant',
       prompt: 'what is the capital of france?',
+      experimental_telemetry: {
+        isEnabled: true,
+        recordInputs: true,
+        recordOutputs: true,
+      },
     });
+    return steps;
   },
 );

@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { useTRPC } from '@/trpc/client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 const Page = () => {
   const trpc = useTRPC();
@@ -14,7 +15,13 @@ const Page = () => {
       },
     }),
   );
-  const testAi = useMutation(trpc.testAi.mutationOptions());
+  const testAi = useMutation(
+    trpc.testAi.mutationOptions({
+      onError: () => {
+        toast.error('AI execution failed');
+      },
+    }),
+  );
 
   return (
     <div className='justify-center flex items-center  min-h-screen bg-amber-50 '>
