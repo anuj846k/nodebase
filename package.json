@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "inngest:dev": "npx inngest-cli@latest dev",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate",
+    "dev:all": "mprocs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -25,8 +29,10 @@
     "date-fns": "^4.1.0",
     "dotenv": "^17.4.2",
     "embla-carousel-react": "^8.6.0",
+    "inngest": "^4.5.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^1.14.0",
+    "mprocs": "^0.9.5",
     "next": "16.2.5",
     "next-themes": "^0.4.6",
     "pg": "^8.20.0",
