@@ -14,6 +14,7 @@ const Page = () => {
       },
     }),
   );
+  const testAi = useMutation(trpc.testAi.mutationOptions());
 
   return (
     <div className='justify-center flex items-center  min-h-screen bg-amber-50 '>
@@ -21,6 +22,9 @@ const Page = () => {
       <div>{JSON.stringify(data, null, 2)}</div>
       <Button disabled={create.isPending} onClick={() => create.mutate()}>
         {create.isPending ? 'Creating...' : 'Create Workflow'}
+      </Button>
+      <Button disabled={testAi.isPending} onClick={() => testAi.mutate()}>
+        {testAi.isPending ? 'Testing AI...' : 'Test AI'}
       </Button>
     </div>
   );
