@@ -15,7 +15,10 @@
   "dependencies": {
     "@ai-sdk/google": "^3.0.80",
     "@base-ui/react": "^1.4.1",
+    "@better-auth/core": "1.6.11",
     "@hookform/resolvers": "^5.2.2",
+    "@polar-sh/better-auth": "^1.8.4",
+    "@polar-sh/sdk": "^0.47.1",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@sentry/nextjs": "^10.56.0",
